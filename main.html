@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Корпоративная витрина AI-моделей">
+    <meta name="keywords" content="AI, ИИ, LLM, DeepSeek, YandexGPT, GigaChat">
+    <title>Корпоративная витрина AI-моделей</title>
+    <style>
+        :root {
+            --primary-color: #2C3E50;
+            --secondary-color: #3498DB;
+            --accent-color: #E74C3C;
+            --light-color: #ECF0F1;
+            --dark-color: #2C3E50;
+            --text-color: #333333;
+            --text-light: #FFFFFF;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        /* Основные стили */
+        body {
+            font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #F5F7FA;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Шапка */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 25px 0;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            color: var(--text-light);
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 300;
+        }
+        
+        .header p {
+            margin: 10px 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Меню вкладок */
+        .tab-menu {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 12px 30px;
+            background-color: var(--light-color);
+            color: var(--primary-color);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: var(--transition);
+            font-weight: 500;
+            box-shadow: var(--shadow);
+        }
+        
+        .tab-btn:hover {
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+        }
+        
+        .tab-btn.active {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        /* Карточки моделей */
+        .llm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .llm-card {
+            background-color: var(--text-light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .llm-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 15px;
+            color: var(--text-light);
+            text-align: center;
+        }
+        
+        .card-header h2 {
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin: 0 auto 15px;
+            background-color: var(--light-color);
+            padding: 10px;
+            border-radius: 50%;
+        }
+        
+        .card-description {
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text-color);
+            flex-grow: 1;
+        }
+        
+        .card-footer {
+            margin-top: auto;
+        }
+        
+        .card-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: var(--text-light);
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .card-btn:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Футер */
+        .footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer p {
+            margin: 10px 0;
+            opacity: 0.8;
+        }
+        
+        .footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .llm-grid {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Модальное окно */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .modal-content h2 {
+            color: var(--accent-color);
+            margin-top: 0;
+        }
+        
+        .modal-content p {
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .modal-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: var(--transition);
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .modal-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .tab-menu {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .llm-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header {
+                padding: 20px 0;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Модальное окно с предупреждением -->
+    <div id="warningModal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Внимание!</h2>
+            <p>При работе с генеративными моделями не передавайте конфиденциальную информацию. Ваши данные могут обрабатываться на сторонних серверах. Пожалуйста, убедитесь, что вы согласны с этим, прежде чем продолжить.</p>
+            <button class="modal-btn" onclick="closeModal()">Я принимаю условия</button>
+        </div>
+    </div>
+
+    <!-- Шапка -->
+    <div class="header">
+        <h1>Корпоративная витрина AI-решений</h1>
+        <p>Современные технологии искусственного интеллекта</p>
+    </div>
+
+    <div class="container">
+        <!-- Меню вкладок -->
+        <div class="tab-menu">
+            <button class="tab-btn active" onclick="showTab('text-tab')">Генерация текста</button>
+            <button class="tab-btn" onclick="showTab('image-tab')">Генерация изображений</button>
+        </div>
+
+        <!-- Text to Text модели -->
+        <div id="text-tab" class="llm-grid">
+            <div class="llm-card">
+                <div class="card-header">
+                    <h2>DeepSeek</h2>
+                </div>
+                <div class="card-body">
+                    <img src="DSLogo.png" alt="DeepSeek" class="card-logo" loading="lazy">
+                    <div class="card-description">
+                        <p>Инновационная модель ИИ для обработки естественного языка и автоматизации бизнес-процессов. Применяется в чат-ботах, аналитике и документообороте.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer" class="card-btn">Открыть</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="llm-card">
+                <div class="card-header">
+                    <h2>Perplexity AI</h2>
+                </div>
+                <div class="card-body">
+                    <img src="https://www.perplexity.ai/favicon.ico" alt="Perplexity AI" class="card-logo" loading="lazy">
+                    <div class="card-description">
+                        <p>Мощный инструмент для поиска и анализа информации с использованием ИИ. Помогает находить ответы на сложные вопросы и анализировать данные.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer" class="card-btn">Открыть</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="llm-card">
+                <div class="card-header">
+                    <h2>YandexGPT</h2>
+                </div>
+                <div class="card-body">
+                    <img src="yalogo.png" alt="YandexGPT" class="card-logo" loading="lazy">
+                    <div class="card-description">
+                        <p>Языковая модель от Яндекса для обработки естественного языка. Интегрирована в экосистему Яндекс, поддерживает диалоги и решение задач.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://alice.yandex.ru" target="_blank" rel="noopener noreferrer" class="card-btn">Открыть</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="llm-card">
+                <div class="card-header">
+                    <h2>Storm</h2>
+                </div>
+                <div class="card-body">
+                    <img src="https://storm.genie.stanford.edu/favicon.ico" alt="Storm" class="card-logo" loading="lazy">
+                    <div class="card-description">
+                        <p>Модель для написания статей от Стэнфордского университета. Помогает создавать качественные тексты и анализировать данные.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://storm.genie.stanford.edu/" target="_blank" rel="noopener noreferrer" class="card-btn">Открыть</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="llm-card">
+                <div class="card-header">
+                    <h2>GigaChat</h2>
+                </div>
+                <div class="card-body">
+                    <img src="gc_logo.jpeg" alt="GigaChat" class="card-logo" loading="lazy">
+                    <div class="card-description">
+                        <p>Мощная нейросетевая модель от Сбера для ведения диалогов и генерации текстов на русском языке. Подходит для анализа данных.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://giga.chat/gigachat/" target="_blank" rel="noopener noreferrer" class="card-btn">Открыть</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="llm-card">
+                <div class="card-header">
+                    <h2>Hugging Face</h2>
+                </div>
+                <div class="card-body">
+                    <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face" class="card-logo" loading="lazy">
+                    <div class="card-description">
+                        <p>Платформа с открытыми языковыми моделями и инструментами для NLP. Популярна среди разработчиков благодаря сообществу.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://huggingface.co/" target="_blank" rel="noopener noreferrer" class="card-btn">Открыть</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Text to Image модели -->
+        <div id="image-tab" class="llm-grid" style="display: none;">
+            <div class="llm-card">
+                <div class="card-header">
+                    <h2>FusionBrain AI</h2>
+                </div>
+                <div class="card-body">
+                    <img src="fblogo.png" alt="FusionBrain AI" class="card-logo" loading="lazy">
+                    <div class="card-description">
+                        <p>Платформа от SberAI для генерации изображений и решения сложных задач. Применяется в творчестве, дизайне и бизнес-аналитике.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://fusionbrain.ai/editor/" target="_blank" rel="noopener noreferrer" class="card-btn">Открыть</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="llm-card">
+                <div class="card-header">
+                    <h2>Shedevrum AI</h2>
+                </div>
+                <div class="card-body">
+                    <img src="shlogo.png" alt="Shedevrum AI" class="card-logo" loading="lazy">
+                    <div class="card-description">
+                        <p>Инструмент от VK для генерации изображений из текстовых описаний. Позволяет создавать уникальные визуализации на основе идей.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://shedevrum.ai/text-to-image/" target="_blank" rel="noopener noreferrer" class="card-btn">Открыть</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="llm-card">
+                <div class="card-header">
+                    <h2>Napkin AI</h2>
+                </div>
+                <div class="card-body">
+                    <img src="https://app.napkin.ai/favicon.ico" alt="Napkin AI" class="card-logo" loading="lazy">
+                    <div class="card-description">
+                        <p>Инструмент для генерации изображений по текстовым описаниям. Позволяет быстро создавать визуализации и дизайны с использованием ИИ.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://app.napkin.ai/" target="_blank" rel="noopener noreferrer" class="card-btn">Открыть</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <div class="footer">
+        <div class="footer-content">
+            <p>© 2025 Корпоративная витрина AI-решений</p>
+            <p></p>
+        </div>
+    </div>
+
+    <script>
+        // Функция для переключения между вкладками
+        function showTab(tabId) {
+            // Скрываем все вкладки
+            document.querySelectorAll('.llm-grid').forEach(tab => {
+                tab.style.display = 'none';
+            });
+
+            // Показываем выбранную вкладку
+            document.getElementById(tabId).style.display = 'grid';
+            
+            // Убираем активный класс у всех кнопок
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Добавляем активный класс к выбранной кнопке
+            event.currentTarget.classList.add('active');
+            
+            // Сохраняем выбор в localStorage
+            localStorage.setItem('activeTab', tabId);
+        }
+
+        // Функция для закрытия модального окна
+        function closeModal() {
+            document.getElementById('warningModal').style.display = 'none';
+        }
+
+        // При загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Всегда показываем модальное окно при загрузке
+            document.getElementById('warningModal').style.display = 'flex';
+            
+            // Восстанавливаем активную вкладку
+            const activeTab = localStorage.getItem('activeTab') || 'text-tab';
+            document.getElementById(activeTab).style.display = 'grid';
+            
+            // Активируем соответствующую кнопку
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('onclick').includes(activeTab)) {
+                    btn.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
